@@ -112,26 +112,29 @@ class ClientesController extends Controller
     $numConsecutivo = intval(substr($ultimaPoliza, $tamañoPoliza-5));
 
 
-    if($numConsecutivo <10)
+    if($ultimaPoliza == null )
     {
-        $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-0000".intval($numConsecutivo+1);
+        $poliza = "N°-".$request->tipoPoliza.substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3)."0".intval(substr($request->fechaInicio,0,-6)+1)."D".$request->vendedor."-"."0001";
     }
-    else if ($numConsecutivo >=10 && $numConsecutivo <100 )
-     {
-               $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-000".intval($numConsecutivo+1);
-     }
-         else if ($numConsecutivo >=100 && $numConsecutivo <1000 )
-     {
-               $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-00".intval($numConsecutivo+1);
-     }
-         else if ($numConsecutivo >=1000 && $numConsecutivo <10000 )
-     {
-               $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-0".intval($numConsecutivo+1);
-     }
-     else
-     {
-        $poliza = "A°-".substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3).intval(substr($request->fechaInicio,0,-6)+1).$request->vendedor."-".intval($numConsecutivo+1);
-     }
+   else{
+       
+       $ultimoNumero = $ultimaPoliza->id + 1 ;
+       if($ultimoNumero <10)
+       {
+          
+          $ultimoNumero = "000". strval( $ultimoNumero ) ;
+
+       }
+       else if( $ultimoNumero >=10 && $ultimoNumero <100)
+       {
+           $ultimoNumero = "00". strval( $ultimoNumero ) ;
+       }
+       else if( $ultimoNumero >=100 && $ultimoNumero <1000)
+       {
+           $ultimoNumero = "0". strval( $ultimoNumero ) ;
+       }
+       $poliza = "N°-".$request->tipoPoliza.substr($request->fechaInicio, 8).substr($request->fechaInicio, 5,-3)."0".intval(substr($request->fechaInicio,0,-6)+1)."D".$request->vendedor."-".$ultimoNumero;
+        }
 
      
       $direccion = new Direccion();
