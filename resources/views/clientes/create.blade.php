@@ -4,6 +4,13 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+                <!-- Latest compiled and minified JavaScript -->
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+              
+                
   <div class="col-md-12">
     <div class="card" style="box-shadow: 0 5px 5px 0 rgba(0,0,0,0.5);">
       <div class="card-header">
@@ -153,4 +160,5 @@
       <!-- formulario -->
     </div>
   </div>
+
 </x-app-layout>
