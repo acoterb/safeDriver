@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('costos/{id}','App\Http\Controllers\ServiciosController@costos')->name('costos');
     Route::get('vehiculo/{id}','App\Http\Controllers\ClientesController@vehiculo')->name('vehiculo');
 
+    Route::get('colonia/{colonia}', 'App\Http\Controllers\ClientesController@colonias_traer')->name('colonias');
+
     Route::post('/choques/busqueda', 'App\Http\Controllers\ChoqueController@buscado')->name('choquesBusqueda');
     Route::get('/proceso/','App\Http\Controllers\ClientesController@correcion')->name('proceso.ocr');
     Route::get('/proceso/ocr','App\Http\Controllers\ClientesController@proceso_ocr')->name('proceso.ocr');

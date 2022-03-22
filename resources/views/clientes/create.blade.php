@@ -154,5 +154,3 @@
     </div>
   </div>
 </x-app-layout>
-
-  <script defer src="{{asset('js/cliente/cliente.js')}}"></script>

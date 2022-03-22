@@ -18,3 +18,5 @@ $("#hasta").val(hasta+ $('#fechaInicio').val().substr(4, $('#fechaInicio').val()
 
 
 });
+
+

@@ -16,6 +16,8 @@ use App\Models\Direccion;
 use App\Models\Pagos;
 use App\Models\Pagos_detalle;
 use App\Models\Pagos_fecha;
+use App\Models\Municipios;
+use App\Models\Colonias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -88,8 +90,12 @@ class ClientesController extends Controller
       $vendedor = $vendedor->all();
       $cobrador = new Cobradore();
       $cobrador = $cobrador->all();
+      $municipio = new Municipios();
+      $municipio = $municipio->all();
+      $colonia = new Colonias();
+      $colonia = $colonia->all();
 
-       return view('clientes.create',compact('vendedor','cobrador','contrato'));
+       return view('clientes.create',compact('vendedor','cobrador','contrato', 'municipio', 'colonia'));
     }
 
     /**
@@ -98,6 +104,19 @@ class ClientesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function colonias_traer($colonia)
+    {
+        $colonia = DB::table('colonias')->join('municipios', 'municipios.id', '=', 'colonias.id_municipio')
+        ->select('colonias.colonia', 'colonias.id_municipio')
+        ->where('municipios.Municipio', $colonia)->get();
+        dd($colonia);
+        return response()->json($colonia->toArray());
+        
+        //$prueba =['xd', 'dx', 'menso', 'halo'];
+        //return response()->json($prueba->toArray());
+    }
+
     public function store(Request $request)
 
  {
