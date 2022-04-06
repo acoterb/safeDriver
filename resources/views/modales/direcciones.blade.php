@@ -20,8 +20,12 @@
     <div class="col-md-4">
         <div class="input-group-addon">Ciudad</div>
         <select required autofocus id="ciudad" name="ciudad" class="form-control selectpicker" data-live-search="true">
+            @if(isset($clientes))
+                <option selected value="{{$clientes->direccion->ciudad}}">{{$clientes->direccion->ciudad}}</option>
+            @endif
             <option value="">Selecciona la ciudad</option>
             @foreach($municipio as $municipios)
+                
                 <option value="{{$municipios->Municipio}}">{{$municipios->Municipio}}</option>
             @endforeach
         </select>    
@@ -42,6 +46,9 @@
     <div class="col-md-4">
         <div class="input-group-addon">Colonia</div>
         <select required autofocus id="col" name="col" class="form-control selectpicker" data-live-search="true">
+            @if(isset($clientes))
+                <option selected value="{{$clientes->direccion->colonia}}">{{$clientes->direccion->colonia}}</option>
+            @endif
             <option value="">Selecciona la colonia</option>
             @foreach($colonia as $col)
                 <option value="{{$col->colonia}}">{{$col->colonia}}</option>
@@ -59,10 +66,14 @@
          @endif
         >
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.15/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.15/dist/css/bootstrap-select.min.css">
     <script type="text/javascript">
         $( "#ciudad" ).change(function() {
 
-        var Route = "colonia/" + $('#ciudad').val();
+        var Route = "/colonia/" + $('#ciudad').val();
 
         $("#col option").remove();
 
@@ -73,7 +84,7 @@
             for( i = 0; i < res.length;i++){
                 console.log("La fila  "+ res[i]);
 
-                $("#col").append("<option value = "+res[i]+">"+res[i]+"</option>");
+                $("#col").append("<option value = "+res[i].colonia+">"+res[i].colonia+"</option>");
             }
             $("#col").selectpicker('refresh');
     

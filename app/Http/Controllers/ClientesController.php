@@ -107,14 +107,10 @@ class ClientesController extends Controller
 
     public function colonias_traer($colonia)
     {
-        $colonia = DB::table('colonias')->join('municipios', 'municipios.id', '=', 'colonias.id_municipio')
+        $colonias = DB::table('colonias')->join('municipios', 'municipios.id', '=', 'colonias.id_municipio')
         ->select('colonias.colonia', 'colonias.id_municipio')
         ->where('municipios.Municipio', $colonia)->get();
-        dd($colonia);
-        return response()->json($colonia->toArray());
-        
-        //$prueba =['xd', 'dx', 'menso', 'halo'];
-        //return response()->json($prueba->toArray());
+        return response()->json($colonias->toArray());
     }
 
     public function store(Request $request)
@@ -158,7 +154,7 @@ class ClientesController extends Controller
      
       $direccion = new Direccion();
       $direccion ->calle = $request->calle;
-      $direccion ->colonia = $request->colonia;
+      $direccion ->colonia = $request->col;
       $direccion ->cruzes = $request->cruzes;
       $direccion ->estado = $request->estadoDireccion;
       $direccion ->ciudad = $request->ciudad;
@@ -308,7 +304,10 @@ class ClientesController extends Controller
     public function edit($id)
     {
 
-
+      $municipio = new Municipios();
+      $municipio = $municipio->all();
+      $colonia = new Colonias();
+      $colonia = $colonia->all();
 
       $cliente = Contratos::findorfail($id);
       $clientes = Cliente::findorfail($cliente->cliente_id);
@@ -333,7 +332,7 @@ class ClientesController extends Controller
         $grua = new Grua;
       }
 
-       return view('clientes.edit',compact('vendedor','cobrador','cliente','clientes','pagos','pagosDetalle1','pagosDetalle2','pagosDetalle3','pagosDetalle4','grua','pagosFecha1','pagosFecha2','pagosFecha3','pagosFecha4'));
+       return view('clientes.edit',compact('municipio','colonia','vendedor','cobrador','cliente','clientes','pagos','pagosDetalle1','pagosDetalle2','pagosDetalle3','pagosDetalle4','grua','pagosFecha1','pagosFecha2','pagosFecha3','pagosFecha4'));
     }
 
     /**
