@@ -121,6 +121,7 @@ class ClientesController extends Controller
     $ultimaPoliza =  new Contratos();
     $ultimaPoliza = $ultimaPoliza->all();
     $ultimaPoliza = $ultimaPoliza->last();
+    $ultimoNumero = $ultimaPoliza->id + 1 ;
     $ultimaPoliza = $ultimaPoliza->poliza;
     $tamañoPoliza =  strlen($ultimaPoliza);
 
@@ -133,7 +134,7 @@ class ClientesController extends Controller
     }
    else{
        
-       $ultimoNumero = $ultimaPoliza->id + 1 ;
+       
        if($ultimoNumero <10)
        {
           
