@@ -121,6 +121,7 @@ class ClientesController extends Controller
     $ultimaPoliza =  new Contratos();
     $ultimaPoliza = $ultimaPoliza->all();
     $ultimaPoliza = $ultimaPoliza->last();
+    $ultimoNumero = $ultimaPoliza->id + 1 ;
     $ultimaPoliza = $ultimaPoliza->poliza;
     $tamañoPoliza =  strlen($ultimaPoliza);
 
@@ -133,7 +134,7 @@ class ClientesController extends Controller
     }
    else{
        
-       $ultimoNumero = $ultimaPoliza->id + 1 ;
+       
        if($ultimoNumero <10)
        {
           
@@ -267,14 +268,36 @@ class ClientesController extends Controller
           $pagos = Pagos::where('contrato_id',$contrato->id)->first();
         if($contrato->tipo == "D")
         {
-            return view('clientes.polizaD',compact('contrato','direccion','vehiculo','licencia','pagos'));
+            $pdf = \PDF::loadView('clientes.polizaD',compact('contrato','direccion','vehiculo','licencia','pagos'));
+            return $pdf->stream('contrato'.$contrato->poliza.'.pdf');
         }
     else
     {
-        return view('clientes.poliza',compact('contrato','direccion','vehiculo','licencia','pagos'));
+        $pdf = \PDF::loadView('clientes.poliza',compact('contrato','direccion','vehiculo','licencia','pagos'));
+        return $pdf->stream('contrato'.$contrato->poliza.'.pdf');
+    }
+}
+
+    public function pdf($id)
+    {
+        $contrato = Contratos::findorfail($id);
+        $cliente = Cliente::where('id', $contrato->cliente_id)->first();
+        $direccion = Direccion::where('id',$cliente->direccions_id)->first();
+        $vehiculo = Vehiculos::where('id',$contrato->vehiculo_id)->first();
+        $licencia = Licencia::where('id',$contrato->licencia_id)->first();
+        $pagos = Pagos::where('contrato_id',$contrato->id)->first();
+        if($contrato->tipo == "D")
+        {
+            $pdf = \PDF::loadView('clientes.polizaD',compact('contrato','direccion','vehiculo','licencia','pagos'));
+            return $pdf->stream('contrato'.$contrato->poliza.'.pdf');
+        }
+        else
+        {
+            $pdf = \PDF::loadView('clientes.poliza',compact('contrato','direccion','vehiculo','licencia','pagos'));
+            return $pdf->stream('contrato'.$contrato->poliza.'.pdf');
+        }
     }
 
-    }
        public function polizaEpson230($id)
     {
 
@@ -289,6 +312,7 @@ class ClientesController extends Controller
             return $pdf->stream('contrato'.$contrato->poliza.'.pdf');
 
     }
+
   public function vehiculo($id)
     {
          $clientes = User::findorfail($id);
@@ -679,7 +703,8 @@ class ClientesController extends Controller
             'editar' => '<a  target="_blank" href="'.route('cliente.edit',$oPaciente->id).'"> <button class="btn btn-primary"> <i class="fas fa-edit"></i> </button> </a>',
             'imprimir_Pagare_HP' => '<a target="_blank" href="'.route('cliente.show',$oPaciente->id).'"><button class="btn btn-primary"><i class="fas fa-money-check"></i></button></a>',
             'poliza' => '<a target="_blank" href="'.route('poliza',$oPaciente->id).'"><button class="btn btn-primary"><i class="fas fa-money-check"></i></button></a>',
-            'poliza-epson230' => '<a target="_blank" href="'.route('poliza-epson230',$oPaciente->id).'"><button class="btn btn-primary"><i class="fas fa-money-check"></i></button></a>'
+            'poliza-epson230' => '<a target="_blank" href="'.route('poliza-epson230',$oPaciente->id).'"><button class="btn btn-primary"><i class="fas fa-money-check"></i></button></a>',
+            'PDF' => '<a target="_blank" href="'.route('pdf',$oPaciente->id).'"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>'
         ];
 
         $aPacientes[] = $aDatos;

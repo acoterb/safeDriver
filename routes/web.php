@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/paginado/cliente', 'App\Http\Controllers\ClientesController@paginado')->name('paginado.cliente');
     Route::get('/poliza/cliente/{id}','App\Http\Controllers\ClientesController@poliza')->name('poliza');
     Route::get('/poliza/cliente/epson230/{id}','App\Http\Controllers\ClientesController@polizaEpson230')->name('poliza-epson230');
+    Route::get('/pdf/cliente/{id}','App\Http\Controllers\ClientesController@pdf')->name('pdf');
 
     // reportes
 

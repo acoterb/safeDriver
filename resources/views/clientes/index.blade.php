@@ -10,11 +10,11 @@
             <h2> GESTION DE CLIENTES</h2>
         </div>
         <div class="card-body">
-@can('clientes_create')
+        @can('clientes_create')
           <h3>
             <a href="{{route('cliente.create')}}" style="color:#037DB4;"><i class="far fa-plus-square"></i>&nbsp;&nbsp;Cliente</a>
           </h3>
-@endcan
+        @endcan
           <table id="personalInfo" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
               <thead>
                   <tr>
@@ -29,6 +29,7 @@
                       <th>Imprimir Pagare HP</th>
                       <th>Imprimir Poliza HP y BROTHER</th>
                       <th>Imprimir Poliza EPSON-230</th>
+                      <th>Ver/Descargar PDF</th>
                   </tr>
               </thead>
 
@@ -95,6 +96,9 @@
                 },
                 {
                   "data": "poliza-epson230"
+                },
+                {
+                  "data": "PDF"
                 }
               ],
             "language": {

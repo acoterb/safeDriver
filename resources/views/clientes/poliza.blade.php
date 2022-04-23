@@ -1,3 +1,13 @@
+<style>
+@page{
+  margin: 0;
+}
+body {
+  background: url({{ public_path('/img/fondo.jpg') }}) no-repeat;
+  background-attachment: fixed;
+  background-size: contain;
+}
+</style>
 <table style="font-size: 14px;">
   <tr>
     <th style="position: absolute;left: 70%; top: 20%"><b>{{$contrato->poliza}}</b></th>
@@ -58,4 +68,4 @@
     <td style="position: absolute;left: 75%;top: 85%;"><b>{{ date("d/m/Y", strtotime($contrato->hasta))}}</b></td>
   </tr>
 </table>
-
+</div>
