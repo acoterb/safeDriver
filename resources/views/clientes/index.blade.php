@@ -27,8 +27,7 @@
                       <th>Placa</th>
                       <th>Editar</th>
                       <th>Imprimir Pagare HP</th>
-                      <th>Imprimir Poliza HP y BROTHER</th>
-                      <th>Imprimir Poliza EPSON-230</th>
+                      <th>Imprimir Poliza HP</th>
                       <th>Ver/Descargar PDF</th>
                   </tr>
               </thead>
@@ -94,9 +93,7 @@
                  {
                   "data": "poliza"
                 },
-                {
-                  "data": "poliza-epson230"
-                },
+                
                 {
                   "data": "PDF"
                 }

@@ -701,9 +701,7 @@ class ClientesController extends Controller
             'placa' => $oPaciente->placas,
             'editar' => '<a  target="_blank" href="'.route('cliente.edit',$oPaciente->id).'"> <button class="btn btn-primary"> <i class="fas fa-edit"></i> </button> </a>',
             'imprimir_Pagare_HP' => '<a target="_blank" href="'.route('cliente.show',$oPaciente->id).'"><button class="btn btn-primary"><i class="fas fa-money-check"></i></button></a>',
-            'poliza' => '<a target="_blank" href="'.route('poliza',$oPaciente->id).'"><button class="btn btn-primary"><i class="fas fa-money-check"></i></button></a>',
-            'poliza-epson230' => '<a target="_blank" href="'.route('poliza-epson230',$oPaciente->id).'"><button class="btn btn-primary"><i class="fas fa-money-check"></i></button></a>',
-            'PDF' => '<a target="_blank" href="'.route('pdf',$oPaciente->id).'"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>'
+            'poliza' => '<a target="_blank" href="'.route('poliza',$oPaciente->id).'"><button class="btn btn-primary"><i class="fas fa-money-check"></i></button></a>','PDF' => '<a target="_blank" href="'.route('pdf',$oPaciente->id).'"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>'
         ];
 
         $aPacientes[] = $aDatos;
