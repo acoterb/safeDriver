@@ -41,7 +41,9 @@ class VendedoresController extends Controller
     public function store(Request $request)
     {
       $vendedores = new Vendedore();
-      $vendedores ->numero = $request->numero;
+     $vendedores ->numero = $request->numero;
+      $vendedores ->nombres = $request->nombres;
+      $vendedores ->telefono = $request->telefono;
       $vendedores->usuario_creo = Auth::user()->id;
       $vendedores ->save();
 
@@ -86,6 +88,8 @@ class VendedoresController extends Controller
     {
       $vendedores = Vendedore::find($id);
       $vendedores ->numero = $request->numero;
+      $vendedores ->nombres = $request->nombres;
+      $vendedores ->telefono = $request->telefono;
       $vendedores->ultimo_usuario_modifico = Auth::user()->id;
       $vendedores ->save();
 
