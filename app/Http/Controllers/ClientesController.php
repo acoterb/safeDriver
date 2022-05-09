@@ -268,8 +268,7 @@ class ClientesController extends Controller
           $pagos = Pagos::where('contrato_id',$contrato->id)->first();
         if($contrato->tipo == "D")
         {
-            $pdf = \PDF::loadView('clientes.polizaD',compact('contrato','direccion','vehiculo','licencia','pagos'));
-            return $pdf->stream('contrato'.$contrato->poliza.'.pdf');
+            return view('clientes.polizaD',compact('contrato','direccion','vehiculo','licencia','pagos'));
         }
     else
     {
