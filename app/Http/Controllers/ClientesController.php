@@ -268,7 +268,7 @@ class ClientesController extends Controller
           $pagos = Pagos::where('contrato_id',$contrato->id)->first();
         if($contrato->tipo == "D")
         {
-            return view('clientes.polizaD',compact('contrato','direccion','vehiculo','licencia','pagos'));
+            return view('clientes.polizaDa',compact('contrato','direccion','vehiculo','licencia','pagos'));
         }
     else
     {
