@@ -405,7 +405,7 @@ class ClientesController extends Controller
 
        $direccion = Direccion::findorfail($cliente ->direccions_id);
       $direccion ->calle = $request->calle;
-      $direccion ->colonia = $request->colonia;
+      $direccion ->colonia = $request->col;
       $direccion ->cruzes = $request->cruzes;
       $direccion ->estado = $request->estadoDireccion;
       $direccion ->ciudad = $request->ciudad;
