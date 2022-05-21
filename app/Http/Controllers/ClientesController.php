@@ -113,6 +113,53 @@ class ClientesController extends Controller
         return response()->json($colonias->toArray());
     }
 
+    public function agregar_colonias()
+    {
+        $municipios = new Municipios();
+        $municipios = $municipios->all();
+        return view('clientes.agregar_direccion',compact('municipios'));
+    }
+
+    public function crear_municipio(Request $request)
+    {
+        $municipios = new Municipios();
+        $municipios ->Municipio = $request ->municipio;
+        $municipios ->save();
+
+        $contrato = DB::table('contratos')->orderBy('id', 'DESC')->first();
+        $vendedor = new Vendedore();
+        $vendedor = $vendedor->all();
+        $cobrador = new Cobradore();
+        $cobrador = $cobrador->all();
+        $municipio = new Municipios();
+        $municipio = $municipio->all();
+        $colonia = new Colonias();
+        $colonia = $colonia->all();
+
+        return view('clientes.create',compact('vendedor','cobrador','contrato', 'municipio', 'colonia'));
+    }
+
+    public function crear_colonia(Request $request)
+    {
+        $colonias = new Colonias();
+        $colonias->colonia = $request->colonia;
+        $colonias->codigo_postal = $request->codigo_postal;
+        $colonias->id_municipio = $request->ciudad;
+        $colonias->save();
+
+        $contrato = DB::table('contratos')->orderBy('id', 'DESC')->first();
+        $vendedor = new Vendedore();
+        $vendedor = $vendedor->all();
+        $cobrador = new Cobradore();
+        $cobrador = $cobrador->all();
+        $municipio = new Municipios();
+        $municipio = $municipio->all();
+        $colonia = new Colonias();
+        $colonia = $colonia->all();
+
+        return view('clientes.create',compact('vendedor','cobrador','contrato', 'municipio', 'colonia'));
+    }
+
     public function store(Request $request)
 
  {

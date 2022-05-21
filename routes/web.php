@@ -46,6 +46,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/poliza/cliente/{id}','App\Http\Controllers\ClientesController@poliza')->name('poliza');
     Route::get('/poliza/cliente/epson230/{id}','App\Http\Controllers\ClientesController@polizaEpson230')->name('poliza-epson230');
     Route::get('/pdf/cliente/{id}','App\Http\Controllers\ClientesController@pdf')->name('pdf');
+    Route::get('/clientes/agregar_direccion','App\Http\Controllers\ClientesController@agregar_colonias')->name('direcciones');
+    Route::Post('/agregar_municipio','App\Http\Controllers\ClientesController@crear_municipio')->name('crear.municipio');
+    Route::Post('/agregar_colonia','App\Http\Controllers\ClientesController@crear_colonia')->name('crear.colonia');
 
     // reportes
 

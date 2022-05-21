@@ -30,8 +30,15 @@
             @endforeach
         </select>    
     </div>
+
     <div class="col-md-4">
+        <a href="{{route('direcciones')}}">
+            <button type="button" class="btn btn-primary">
+                <i>Agregar dirección no existente</i>
+            </button>
+        </a>
     </div>
+
     <div class="col-md-4">
         <label class="sr-only" for="calle">Calle</label>
         <div class="input-group-addon">Calle</div>
