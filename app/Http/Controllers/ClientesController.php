@@ -313,16 +313,17 @@ class ClientesController extends Controller
           $vehiculo = Vehiculos::where('id',$contrato->vehiculo_id)->first();
           $licencia = Licencia::where('id',$contrato->licencia_id)->first();
           $pagos = Pagos::where('contrato_id',$contrato->id)->first();
-        if($contrato->tipo == "D")
-        {
-            return view('clientes.polizaDa',compact('contrato','direccion','vehiculo','licencia','pagos'));
-        }
-    else
-    {
-        $pdf = \PDF::loadView('clientes.poliza',compact('contrato','direccion','vehiculo','licencia','pagos'));
-        return $pdf->stream('contrato'.$contrato->poliza.'.pdf');
+          if($contrato->tipo == "D")
+          {
+                $pdf = \PDF::loadView('clientes.polizaDa',compact('contrato','direccion','vehiculo','licencia','pagos'));
+                return $pdf->stream('contrato'.$contrato->poliza.'.pdf');
+          }
+          else
+          {
+                $pdf = \PDF::loadView('clientes.poliza',compact('contrato','direccion','vehiculo','licencia','pagos'));
+                return $pdf->stream('contrato'.$contrato->poliza.'.pdf');
+          }
     }
-}
 
     public function pdf($id)
     {
@@ -334,7 +335,7 @@ class ClientesController extends Controller
         $pagos = Pagos::where('contrato_id',$contrato->id)->first();
         if($contrato->tipo == "D")
         {
-            $pdf = \PDF::loadView('clientes.polizaD',compact('contrato','direccion','vehiculo','licencia','pagos'));
+            $pdf = \PDF::loadView('clientes.polizaDa',compact('contrato','direccion','vehiculo','licencia','pagos'));
             return $pdf->stream('contrato'.$contrato->poliza.'.pdf');
         }
         else
